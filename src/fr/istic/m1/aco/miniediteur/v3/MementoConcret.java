@@ -26,7 +26,7 @@ public class MementoConcret implements Memento {
 	}
 
 	public MementoConcret(Buffer bb,PressePapier pp) {
-		//Text = text;
+		
 		this.buff=bb;
 		this.presspap=pp;
 	}

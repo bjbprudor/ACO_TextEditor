@@ -135,8 +135,8 @@ public class MiniEditorV3  extends MiniEditorV2{
 				
 				organisator.set(textInTextArea);
 			
-				//caretak.addMemento(organisator.createNewMemento());
-				//System.out.println("Current Text " + currentText);
+				caretak.addMemento(organisator.createNewMemento());
+				System.out.println("Current Text " + currentText);
 				System.out.println("Current Text " + currentText);
 				
 				undoBut.setEnabled(true);
