@@ -42,19 +42,22 @@ public class Configurator
 	public static void LaunchV1()
 	{
 		mei = new MEI1();
-		MiniEditorV1.main(null);		
+		MiniEditorV1 frame = new MiniEditorV1();
+		frame.setVisible(true);		
 	}
 	
 	public static void LaunchV2()
 	{
 		mei = new MEI2();
-		MiniEditorV2.main(null);
+		MiniEditorV2 frame = new MiniEditorV2();
+		frame.setVisible(true);	
 	}
 	
 	public static void LaunchV3()
 	{
 		mei= new MEI3();
-		MiniEditorV3.main(null);
+		MiniEditorV3 frame = new MiniEditorV3();
+		frame.setVisible(true);	
 	}
 	
 	

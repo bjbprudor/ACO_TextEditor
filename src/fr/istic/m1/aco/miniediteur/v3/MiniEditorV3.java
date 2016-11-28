@@ -5,9 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -34,9 +31,6 @@ public class MiniEditorV3  extends MiniEditorV2{
 	
    int saveFiles = 0, currentText = 0;
    private JToolBar toolBar;
-   private JButton btnNewButton;
-   private JButton btnNewButton_1;
-   
    JButton undoBut;
    JButton redoBut;
 	MEI3 me = (MEI3)Configurator.mei;
@@ -88,6 +82,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 			
 			
 		}
+		@SuppressWarnings("unused")
 		public void  warn()
 		{
 			String textInTextArea = textArea.getText();

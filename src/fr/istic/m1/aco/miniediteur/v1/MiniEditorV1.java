@@ -1,8 +1,6 @@
 package fr.istic.m1.aco.miniediteur.v1;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -34,29 +32,12 @@ public class MiniEditorV1 extends JFrame
 	protected JPanel contentPane;
 	protected JToolBar toolBar;
 	protected JTextArea textArea;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) 
+	
+	public void runFrm()
 	{
-		EventQueue.invokeLater(new Runnable() 
-		{
-			public void run() 
-			{
-				try 
-				{
-					MiniEditorV1 frame = new MiniEditorV1();
-					frame.setVisible(true);
-				} 
-				catch (Exception e) 
-				{
-					e.printStackTrace();
-				}
-			}
-		});
+		
 	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -80,6 +61,7 @@ public class MiniEditorV1 extends JFrame
 		JButton btnCopy = new JButton("Copier");
 		btnCopy.addActionListener(new ActionListener() 
 		{
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) 
 			{
 				Configurator.current = new Copier(Configurator.mei);		
@@ -93,6 +75,7 @@ public class MiniEditorV1 extends JFrame
 		JButton btnCut = new JButton("Couper");
 		btnCut.addActionListener(new ActionListener() 
 		{
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) 
 			{
 				Configurator.current = new Couper(Configurator.mei);		
@@ -107,6 +90,7 @@ public class MiniEditorV1 extends JFrame
 		JButton btnPaste = new JButton("Coller");
 		btnPaste.addActionListener(new ActionListener() 
 		{
+			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) 
 			{
 				Configurator.current = new Coller(Configurator.mei);		
@@ -120,6 +104,7 @@ public class MiniEditorV1 extends JFrame
 		textArea.getDocument().addDocumentListener(new DocumentListener() 
 		{
 			
+			@SuppressWarnings("static-access")
 			@Override
 			public void insertUpdate(DocumentEvent e) 
 			{
@@ -129,6 +114,7 @@ public class MiniEditorV1 extends JFrame
 				System.out.println("Insertion Executée : " + Configurator.mei.bf.getZoneText().toString());
 			}
 			
+			@SuppressWarnings("static-access")
 			@Override
 			public void removeUpdate(DocumentEvent e) 
 			{
