@@ -189,8 +189,8 @@ public class MiniEditorV3  extends MiniEditorV2{
                       else
 						
 						if(e.getSource() == redoBut){
-							System.out.println("redo button is clicked");
-							System.out.println("savefiles value1  " + saveFiles);
+						//	System.out.println("redo button is clicked");
+							//System.out.println("savefiles value1  " + saveFiles);
 						if((saveFiles - 1) > currentText){
 							System.out.println("savefiles value2  " + saveFiles);
 							// Increment to the current article displayed

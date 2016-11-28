@@ -14,8 +14,9 @@ public class Caretaker {
 		
 		public void addMemento(MementoConcret m) { 
 		//	savedmomento.add(m); 
-			stundo.push(m);
 			stredo.pop();
+			stundo.push(m);
+			
 			}
 	   
 		// Gets the memento requested from the ArrayList
