@@ -7,32 +7,33 @@ public class MEI3 extends MEI2
 	@Override
 	public void Inserer(String txt) 
 	{
-		//MementoConcret mc = new MementoConcret(this.bf,this.pp);
+		MementoConcret mc = new MementoConcret(this.bf,this.pp);
 		super.Inserer(txt);
 	}
 	
 	@Override
 	public void Copier() 
 	{
-		//MementoConcret mc = new MementoConcret(this.bf,this.pp);
+		MementoConcret mc = new MementoConcret(this.bf,this.pp);
 		super.Copier();
 	}
 	
 	@Override
 	public void Couper() {
 		// TODO Auto-generated method stub
+		MementoConcret mc = new MementoConcret(this.bf,this.pp);
 		super.Couper();
 	}
 	
 	@Override
 	public void Coller() {
-		// TODO Auto-generated method stub
+		MementoConcret mc = new MementoConcret(this.bf,this.pp);
 		super.Coller();
 	}
 	
 	@Override
 	public void Supprimer() {
-		// TODO Auto-generated method stub
+		MementoConcret mc = new MementoConcret(this.bf,this.pp);
 		super.Supprimer();
 	}
 	

@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -31,6 +34,9 @@ public class MiniEditorV3  extends MiniEditorV2{
 	
    int saveFiles = 0, currentText = 0;
    private JToolBar toolBar;
+   private JButton btnNewButton;
+   private JButton btnNewButton_1;
+   
    JButton undoBut;
    JButton redoBut;
 	MEI3 me = (MEI3)Configurator.mei;
@@ -82,7 +88,6 @@ public class MiniEditorV3  extends MiniEditorV2{
 			
 			
 		}
-		@SuppressWarnings("unused")
 		public void  warn()
 		{
 			String textInTextArea = textArea.getText();
@@ -93,12 +98,11 @@ public class MiniEditorV3  extends MiniEditorV2{
 			    currentText++;
 			
 			
-			//MementoConcret mem = new MementoConcret();
-			//mem.buff=me.bf;
-			//mem.presspap=me.pp;
+			MementoConcret mem = new MementoConcret(me.bf,me.pp);
+			
 			
 		
-			//caretak.addMemento(mem);
+			caretak.addMemento(mem);
 			//System.out.println("Current Text " + currentText);
 			System.out.println("Current Text " + currentText);
 			
@@ -122,32 +126,41 @@ public class MiniEditorV3  extends MiniEditorV2{
 			//	String textInTextArea = Text.getText();
 				
 				// Set the value for the current memento
-				String textInTextArea =textArea.getText();
+			//	String textInTextArea =textArea.getText();
 				
 				// Set the value for the current memento
 					saveFiles++;
 				currentText++;
 				
-				organisator.set(textInTextArea);
+			//	organisator.set(textInTextArea);
 			
-				caretak.addMemento(organisator.createNewMemento());
-				System.out.println("Current Text " + currentText);
+				//caretak.addMemento(organisator.createNewMemento());
+			//	System.out.println("Current Text " + currentText);
+				//System.out.println("Current Text " + currentText);
+				
+			//	undoBut.setEnabled(true);
+				
+				MementoConcret mem = new MementoConcret(me.bf,me.pp);
+				
+				
+				
+				caretak.addMemento(mem);
+				//System.out.println("Current Text " + currentText);
 				System.out.println("Current Text " + currentText);
 				
 				undoBut.setEnabled(true);
 				
 				
-				
 					if(e.getSource() == undoBut){
-						currentText--;
+					//	currentText--;
 						
-						if(currentText==0)
-						{
-							textArea.setText("");
+						//if(currentText==0)
+					//	{
+					//		textArea.setText("");
 							
-						}
+					//	}
 						
-						System.out.println("Current Text after first undo  " + currentText);
+					//	System.out.println("Current Text after first undo  " + currentText);
 						
 						if(currentText>0){
 							
