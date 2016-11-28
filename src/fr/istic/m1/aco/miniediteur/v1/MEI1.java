@@ -51,7 +51,7 @@ public class MEI1 implements MoteurEdition
 				pp.setContenuPP(val);
 				StringBuffer val2 = bf.getZoneText().delete(se.getDebut(), se.getLongueur());
 				bf.setZoneText(val2);
-				se.setLongueur(0);
+				se.setLongueur(0);//
 				se.setSelected(false);
 			}
 		}
