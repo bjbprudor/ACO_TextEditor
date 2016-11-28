@@ -2,6 +2,7 @@ package fr.istic.m1.aco.miniediteur;
 
 import java.util.Scanner;
 
+import fr.istic.m1.aco.miniediteur.command.Command;
 import fr.istic.m1.aco.miniediteur.v1.MEI1;
 import fr.istic.m1.aco.miniediteur.v1.MiniEditorV1;
 import fr.istic.m1.aco.miniediteur.v2.MEI2;
@@ -13,6 +14,7 @@ public class Configurator
 {
 
 	public static MoteurEdition mei;
+	public static Command current;
 	
 	public static void main(String[] args) 
 	{
