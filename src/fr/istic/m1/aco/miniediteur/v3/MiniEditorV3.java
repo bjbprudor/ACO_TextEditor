@@ -11,7 +11,10 @@ import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import fr.istic.m1.aco.miniediteur.Configurator;
 import fr.istic.m1.aco.miniediteur.v2.MiniEditorV2;
+import javax.swing.JToolBar;
+import java.awt.BorderLayout;
 
 public class MiniEditorV3  extends MiniEditorV2{
 	
@@ -19,20 +22,19 @@ public class MiniEditorV3  extends MiniEditorV2{
 	
        new MiniEditorV3();
 	}
-	
-	
-   private JButton undoBut, redoBut;
-	   
-	   // JTextArea(rows, columns)
-	   
-   private JTextArea Text = new JTextArea(40,60);
    
 	
    Caretaker caretak = new Caretaker();
    Organisator organisator = new Organisator();
 	
    int saveFiles = 0, currentText = 0;
-	
+   private JToolBar toolBar;
+   private JButton btnNewButton;
+   private JButton btnNewButton_1;
+   
+   JButton undoBut;
+   JButton redoBut;
+	MEI3 me = (MEI3)Configurator.mei;
    public MiniEditorV3(){
 	   
 	   // Set basic information for the panel that will
@@ -42,36 +44,26 @@ public class MiniEditorV3  extends MiniEditorV2{
 	   this.setTitle("Memento Design Pattern");
 	   this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	   
-	   JPanel panel1 = new JPanel();
+	   toolBar = new JToolBar();
+	   getContentPane().add(toolBar, BorderLayout.SOUTH);
+	 
+	   undoBut = new JButton("Undo");
+	   toolBar.add(undoBut);
 	   
-	   // Add label to the panel
+	   redoBut = new JButton("Redo");
 	   
-	   panel1.add(new JLabel(""));
-	   
-	   // Add JTextArea to the panel
-	   
-	   panel1.add(Text);
+	   toolBar.add(redoBut);
 	   
 	   
 	   ButtonListener undoListener = new ButtonListener();
 	   ButtonListener redoListener = new ButtonListener();
-	 
+	     
 	   
-	   
-	   undoBut = new JButton("Undo");
 	   undoBut.addActionListener(undoListener);
-	   
-	   redoBut = new JButton("Redo");
 	   redoBut.addActionListener(redoListener);
-	  	   
 	   
-	   panel1.add(undoBut);
-	   panel1.add(redoBut);
-	  
 	   
-	   getContentPane().add(panel1);
-	   
-	   Text.getDocument().addDocumentListener(new DocumentListener(){
+	   textArea.getDocument().addDocumentListener(new DocumentListener(){
 
 		@Override
 		public void changedUpdate(DocumentEvent arg0) {
@@ -82,7 +74,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 		@Override
 		public void insertUpdate(DocumentEvent arg0) {
 		
-			warn();
+			//warn();
 			undoBut.setEnabled(true);
 		}
 
@@ -93,21 +85,27 @@ public class MiniEditorV3  extends MiniEditorV2{
 		}
 		public void  warn()
 		{
-			String textInTextArea = Text.getText();
+			String textInTextArea = textArea.getText();
+			
 			
 			// Set the value for the current memento
 				saveFiles++;
-			currentText++;
+			    currentText++;
 			
-			organisator.set(textInTextArea);
+			
+			MementoConcret mem = new MementoConcret();
+			mem.buff=me.bf;
+			mem.presspap=me.pp;
+			
 		
-			caretak.addMemento(organisator.createNewMemento());
+			caretak.addMemento(mem);
 			//System.out.println("Current Text " + currentText);
 			System.out.println("Current Text " + currentText);
 			
 			undoBut.setEnabled(true);
 		}
 	   });
+	   
 	   
 	   this.setVisible(true);
    }   
@@ -124,7 +122,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 			//	String textInTextArea = Text.getText();
 				
 				// Set the value for the current memento
-				String textInTextArea = Text.getText();
+				String textInTextArea =textArea.getText();
 				
 				// Set the value for the current memento
 					saveFiles++;
@@ -132,7 +130,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 				
 				organisator.set(textInTextArea);
 			
-				caretak.addMemento(organisator.createNewMemento());
+				//caretak.addMemento(organisator.createNewMemento());
 				//System.out.println("Current Text " + currentText);
 				System.out.println("Current Text " + currentText);
 				
@@ -145,7 +143,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 						
 						if(currentText==0)
 						{
-							Text.setText("");
+							textArea.setText("");
 							
 						}
 						
@@ -161,7 +159,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 						
 							String textBoxString = organisator.getMemento(caretak.getMemento(currentText));
 							
-							Text.setText(textBoxString);
+							textArea.setText(textBoxString);
 							
 							// Make Redo clickable
 							
@@ -190,7 +188,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 						
 							String textBoxString = organisator.getMemento(caretak.getMemento(currentText-1));
 							
-							Text.setText(textBoxString);
+							textArea.setText(textBoxString);
 							
 							// Make undo clickable
 							

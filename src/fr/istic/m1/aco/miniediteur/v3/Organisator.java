@@ -20,7 +20,7 @@ public class Organisator {
 	{
 		
 		System.out.println("From Organisator saving to mement");
-		return new MementoConcret(Text);
+		return new MementoConcret();
 	}
 
 	public void set(String txt) {
@@ -28,6 +28,7 @@ public class Organisator {
 		System.out.println("Form organisator:Current txt is: ");
 		Text = txt;
 	}
+    
 	
 	
 	
