@@ -11,11 +11,13 @@ import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-public class NewVerionBuffer  extends JFrame{
+import fr.istic.m1.aco.miniediteur.v2.MiniEditorV2;
 
+public class MiniEditorV3  extends MiniEditorV2{
+	
 	public static void main(String[] args) {
 	
-       new NewVerionBuffer();
+       new MiniEditorV3();
 	}
 	
 	
@@ -31,7 +33,7 @@ public class NewVerionBuffer  extends JFrame{
 	
    int saveFiles = 0, currentText = 0;
 	
-   public NewVerionBuffer(){
+   public MiniEditorV3(){
 	   
 	   // Set basic information for the panel that will
 	   // hold all the GUI elements
@@ -44,7 +46,7 @@ public class NewVerionBuffer  extends JFrame{
 	   
 	   // Add label to the panel
 	   
-	   panel1.add(new JLabel("Text"));
+	   panel1.add(new JLabel(""));
 	   
 	   // Add JTextArea to the panel
 	   
@@ -119,10 +121,22 @@ public class NewVerionBuffer  extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
+			//	String textInTextArea = Text.getText();
+				
+				// Set the value for the current memento
 				String textInTextArea = Text.getText();
 				
 				// Set the value for the current memento
-
+					saveFiles++;
+				currentText++;
+				
+				organisator.set(textInTextArea);
+			
+				caretak.addMemento(organisator.createNewMemento());
+				//System.out.println("Current Text " + currentText);
+				System.out.println("Current Text " + currentText);
+				
+				undoBut.setEnabled(true);
 				
 				
 				

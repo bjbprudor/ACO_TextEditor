@@ -6,6 +6,8 @@ import fr.istic.m1.aco.miniediteur.v1.MEI1;
 import fr.istic.m1.aco.miniediteur.v1.MiniEditorV1;
 import fr.istic.m1.aco.miniediteur.v2.MEI2;
 import fr.istic.m1.aco.miniediteur.v2.MiniEditorV2;
+import fr.istic.m1.aco.miniediteur.v3.MEI3;
+import fr.istic.m1.aco.miniediteur.v3.MiniEditorV3;
 
 public class Configurator 
 {
@@ -49,7 +51,8 @@ public class Configurator
 	
 	public static void LaunchV3()
 	{
-		
+		mei= new MEI3();
+		MiniEditorV3.main(null);
 	}
 	
 	
