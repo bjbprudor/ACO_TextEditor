@@ -15,7 +15,7 @@ public class Supprimer implements Command
 	@Override
 	public void Execute() 
 	{
-		me.supprimer();
+		me.Supprimer();
 	}
 
 }

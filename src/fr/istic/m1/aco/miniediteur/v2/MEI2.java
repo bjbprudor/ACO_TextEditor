@@ -36,6 +36,7 @@ public class MEI2 extends MEI1
 		for (Memento me : ca.getSavedStates()) 
 		{
 			ori.restoreFromMemento(me);
+			System.out.println("Replay " + me.toString());
 		}
 	}
 	
@@ -48,20 +49,22 @@ public class MEI2 extends MEI1
 			((Inserer)c).setText(txt);
 			Memento m = new Memento(c);
 			ca.addMemento(m);
+			System.out.println("Commande Enregistrée : Inserer");
 		}
 		super.Inserer(txt);
 	}
 	
 	@Override
-	public void supprimer() 
+	public void Supprimer() 
 	{
 		if(recording)
 		{
 			Command c = new Supprimer(this);
 			Memento m = new Memento(c);
 			ca.addMemento(m);
+			System.out.println("Commande Enregistrée : Supprimé");
 		}
-		super.supprimer();
+		super.Supprimer();
 	}
 	
 	@Override
@@ -72,6 +75,7 @@ public class MEI2 extends MEI1
 			Command c = new Copier(this);
 			Memento m = new Memento(c);
 			ca.addMemento(m);
+			System.out.println("Commande Enregistrée : Copier");
 		}
 		super.Copier();
 	}
@@ -84,6 +88,7 @@ public class MEI2 extends MEI1
 			Command c = new Couper(this);
 			Memento m = new Memento(c);
 			ca.addMemento(m);
+			System.out.println("Commande Enregistrée : Couper");
 		}
 		super.Couper();
 	}
@@ -96,6 +101,7 @@ public class MEI2 extends MEI1
 			Command c = new Coller(this);
 			Memento m = new Memento(c);
 			ca.addMemento(m);
+			System.out.println("Commande Enregistrée : Coller");
 		}
 		super.Coller();
 	}

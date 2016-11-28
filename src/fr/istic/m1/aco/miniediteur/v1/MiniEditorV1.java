@@ -112,7 +112,7 @@ public class MiniEditorV1 extends JFrame
 				Configurator.current = new Coller(Configurator.mei);		
 				Configurator.current.Execute();
 				System.out.println("Coller executé");
-				System.out.println("buffer : " + Configurator.mei.pp.getContenuPP());
+				System.out.println("buffer : " + Configurator.mei.bf.getZoneText().toString());
 			}
 		});
 		toolBar.add(btnPaste);
@@ -126,14 +126,15 @@ public class MiniEditorV1 extends JFrame
 				Configurator.current = new Inserer(Configurator.mei);
 				((Inserer)Configurator.current).setText(e.toString());
 				Configurator.current.Execute();
+				System.out.println("Insertion Executée : " + Configurator.mei.bf.getZoneText().toString());
 			}
 			
 			@Override
 			public void removeUpdate(DocumentEvent e) 
 			{
-				Configurator.mei.selectionner(e.getOffset(), e.getLength());
 				Configurator.current = new Supprimer(Configurator.mei);		
 				Configurator.current.Execute();
+				System.out.println("Suppression Effectué : " + Configurator.mei.bf.getZoneText().toString());
 			}
 
 			@Override
@@ -141,20 +142,13 @@ public class MiniEditorV1 extends JFrame
 			
 		});
 		
-		addMouseListener(new MouseListener() 
-		{
+		textArea.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) 
-			{
-				
-			}
+			public void mouseReleased(MouseEvent e) { }
 			
 			@Override
-			public void mousePressed(MouseEvent e) 
-			{
-					
-			}
+			public void mousePressed(MouseEvent e) { }
 			
 			@Override
 			public void mouseExited(MouseEvent e) {	}
@@ -165,10 +159,14 @@ public class MiniEditorV1 extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				
+				int i,j;
+				i = textArea.getSelectionStart();
+				j= textArea.getSelectedText().length();
+				Configurator.mei.selectionner(i, j);
+				System.out.println("Selection effectuée : deb " + i + "long : " + j );
 			}
 		});
-		
+				
 	}
 
 }

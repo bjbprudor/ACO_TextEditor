@@ -98,12 +98,12 @@ public class MiniEditorV3  extends MiniEditorV2{
 			    currentText++;
 			
 			
-			MementoConcret mem = new MementoConcret();
-			mem.buff=me.bf;
-			mem.presspap=me.pp;
+			//MementoConcret mem = new MementoConcret();
+			//mem.buff=me.bf;
+			//mem.presspap=me.pp;
 			
 		
-			caretak.addMemento(mem);
+			//caretak.addMemento(mem);
 			//System.out.println("Current Text " + currentText);
 			System.out.println("Current Text " + currentText);
 			

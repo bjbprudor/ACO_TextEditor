@@ -99,7 +99,7 @@ public class MEI1 implements MoteurEdition
 	}
 
 	@Override
-	public void supprimer() 
+	public void Supprimer() 
 	{
 		if(se.getDebut() >= 0 && se.getLongueur() >= 0 && se.isSelected())
 		{

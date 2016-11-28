@@ -16,6 +16,6 @@ public interface MoteurEdition
 	public void Couper();
 	public void Inserer(String txt);
 	public void selectionner(int deb, int longe);
-	public void supprimer();
+	public void Supprimer();
 
 }
