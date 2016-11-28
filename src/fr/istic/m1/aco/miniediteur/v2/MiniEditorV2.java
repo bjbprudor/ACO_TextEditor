@@ -1,7 +1,6 @@
 package fr.istic.m1.aco.miniediteur.v2;
 
 import fr.istic.m1.aco.miniediteur.Configurator;
-import fr.istic.m1.aco.miniediteur.command.Coller;
 import fr.istic.m1.aco.miniediteur.v1.MiniEditorV1;
 import javax.swing.JToolBar;
 import java.awt.BorderLayout;
