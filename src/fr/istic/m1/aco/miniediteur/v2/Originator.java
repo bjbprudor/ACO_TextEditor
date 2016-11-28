@@ -9,11 +9,9 @@ class Originator
 	/* lots of memory consumptive private data that is not necessary to define the 
 	* state and should thus not be saved. Hence the small memento object. */
 	public void set(Command state) 
-	{ 
-		
+	{ 		
 		System.out.println("Originator: Setting state to "+state);
-	    this.state = state; 
-	    
+	    this.state = state;	    
 	}
 
 	public Memento saveToMemento() 
@@ -27,7 +25,8 @@ class Originator
 	public void restoreFromMemento(Memento m) 
 	{
 		
-	    state = m.getSavedState(); 
+	    state = m.getSavedState();
+	    state.Execute();
 	    System.out.println("Originator: State after restoring from Memento: "+state);
 	    
 	}

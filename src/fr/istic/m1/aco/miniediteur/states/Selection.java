@@ -4,13 +4,13 @@ public class Selection
 {
 	
 	private int Debut;
-	private int Fin;
+	private int Longueur;
 	private boolean Selected;
  
-	public Selection(int debut, int fin) 
+	public Selection(int debut, int lon) 
 	{
 		Debut = debut;
-		Fin = fin;
+		Longueur = lon;
 	}
   
 	public int getDebut() 
@@ -23,14 +23,14 @@ public class Selection
 		Debut = debut;
 	}
   
-	public int getFin() 
+	public int getLongueur() 
 	{
-		return Fin;
+		return Longueur;
 	}
   
-	public void setFin(int fin) 
+	public void setLongueur(int fin) 
 	{
-		Fin = fin;
+		Longueur = fin;
 	}
 
 	public boolean isSelected() 

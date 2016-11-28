@@ -9,9 +9,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.FlowLayout;
+import javax.swing.JToolBar;
 
 public class MiniEditorV1 extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	/**
@@ -34,8 +39,9 @@ public class MiniEditorV1 extends JFrame {
 	 * Create the frame.
 	 */
 	public MiniEditorV1() {
+		setTitle("Editor V1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 494, 530);
+		setBounds(100, 100, 494, 377);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -44,25 +50,22 @@ public class MiniEditorV1 extends JFrame {
 		JTextArea textArea = new JTextArea(10,10);
 		contentPane.add(textArea, BorderLayout.CENTER);
 		
-		JPanel menu = new JPanel();
-		contentPane.add(menu, BorderLayout.NORTH);
-		
-		JButton btnCopy = new JButton("Copier");
-		menu.add(btnCopy);
-		
-		JButton btnCut = new JButton("Couper");
-		menu.add(btnCut);
-		
-		JButton btnPaste = new JButton("New button");
-		menu.add(btnPaste);
-		
 		JPanel down = new JPanel();
+		@SuppressWarnings("unused")
 		FlowLayout flowLayout = (FlowLayout) down.getLayout();
 		contentPane.add(down, BorderLayout.SOUTH);
 		
-		JTextArea buffer = new JTextArea(10,40);
-		down.add(buffer);
-		buffer.setEditable(false);
+		JToolBar toolBar = new JToolBar();
+		contentPane.add(toolBar, BorderLayout.NORTH);
+		
+		JButton button = new JButton("Copier");
+		toolBar.add(button);
+		
+		JButton button_1 = new JButton("Couper");
+		toolBar.add(button_1);
+		
+		JButton button_2 = new JButton("Coller");
+		toolBar.add(button_2);
 	}
 
 }

@@ -15,6 +15,7 @@ public interface MoteurEdition
 	public void Coller();
 	public void Couper();
 	public void Inserer(String txt);
-	public void selectionner(int i, int j); //demander au prof si c'est une commande
+	public void selectionner(int deb, int longe);
+	public void supprimer();
 
 }

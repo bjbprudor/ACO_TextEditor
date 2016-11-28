@@ -11,25 +11,24 @@ public class Configurator
 {
 
 	public static MoteurEdition mei;
-	public static IHM ihm;
 	
 	public static void main(String[] args) 
 	{
 		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Veuillez selectionner la version du programme que vous voulez lancer");
-		System.out.println("V1, V2 ou V3 ?");
-		String res = scan.nextLine();
+		System.out.println("Ver.1,2 ou 3 ?");
+		int resu = scan.nextInt();
 		scan.close();
-		if(res == "V1")
+		if(resu == 1)
 		{
 			LaunchV1();
 		}
-		if(res == "V2")
+		else if(resu == 2)
 		{
 			LaunchV2();
 		}
-		if(res == "V3")
+		else if(resu == 3)
 		{
 			LaunchV3();
 		}

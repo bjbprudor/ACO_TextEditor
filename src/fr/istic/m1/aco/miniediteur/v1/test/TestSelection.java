@@ -18,12 +18,12 @@ public class TestSelection
 		
 		Selection se = new Selection(i, j);
 		assertEquals(i, se.getDebut());
-		assertEquals(j, se.getFin());
+		assertEquals(j, se.getLongueur());
 		
 		se.setDebut(k);
-		se.setFin(l);
+		se.setLongueur(l);
 		assertEquals(k, se.getDebut());
-		assertEquals(l, se.getFin());
+		assertEquals(l, se.getLongueur());
 		
 	}
 	

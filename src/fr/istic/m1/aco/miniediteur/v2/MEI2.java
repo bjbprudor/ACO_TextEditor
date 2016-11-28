@@ -1,95 +1,105 @@
 package fr.istic.m1.aco.miniediteur.v2;
 
-import fr.istic.m1.aco.miniediteur.MoteurEdition;
+import fr.istic.m1.aco.miniediteur.command.*;
+import fr.istic.m1.aco.miniediteur.v1.MEI1;
 
 /**
  * @author 16013094
  *
  */
-public class MEI2 implements MoteurEdition
+public class MEI2 extends MEI1
 {
 	
+	private boolean recording;
+	Caretaker ca;
+	Originator ori;
+	
+	public MEI2() 
+	{
+		recording = false;
+		ca = new Caretaker();
+		ori = new Originator();
+	}
+	
+	public void startRecord()
+	{
+		recording = true;
+	}
+	
+	public void stopRecord()
+	{
+		recording = false;
+	}
+	
+	public void replayRecord()
+	{
+		for (Memento me : ca.getSavedStates()) 
+		{
+			ori.restoreFromMemento(me);
+		}
+	}
+	
+	@Override
+	public void Inserer(String txt) 
+	{
+		if(recording)
+		{
+			Command c = new Inserer(this);
+			((Inserer)c).setText(txt);
+			Memento m = new Memento(c);
+			ca.addMemento(m);
+		}
+		super.Inserer(txt);
+	}
+	
+	@Override
+	public void supprimer() 
+	{
+		if(recording)
+		{
+			Command c = new Supprimer(this);
+			Memento m = new Memento(c);
+			ca.addMemento(m);
+		}
+		super.supprimer();
+	}
+	
+	@Override
 	public void Copier() 
 	{
-		if(se.getDebut() >= 0 && se.getFin() >= 0 && se.isSelected())
+		if(recording)
 		{
-			if(bf.getZoneText().length() >= se.getFin())
-			{
-				String val = bf.getZoneText().substring(se.getDebut(), se.getFin()+1); // on recupere la selection de texte
-				pp.setContenuPP(val); // on enregistre le texte dans le presse papier
-			}
+			Command c = new Copier(this);
+			Memento m = new Memento(c);
+			ca.addMemento(m);
 		}
+		super.Copier();
 	}
-
+	
 	@Override
-	public void Coller()
+	public void Couper() 
 	{
-		if (se.getDebut() >= 0 && se.getFin() >= 0) 
+		if(recording)
 		{
-			if(se.isSelected())
-			{
-				StringBuffer val = bf.getZoneText().delete(se.getDebut(), se.getFin());
-				bf.setZoneText(val);
-			}		
-			StringBuffer val = bf.getZoneText().insert(se.getDebut(), se.getFin());
-			bf.setZoneText(val);
+			Command c = new Couper(this);
+			Memento m = new Memento(c);
+			ca.addMemento(m);
 		}
-		
+		super.Couper();
 	}
-
+	
 	@Override
-	public void Couper()
+	public void Coller() 
 	{
-		if(se.getDebut() >= 0 && se.getFin() >= 0 && se.isSelected())
+		if(recording)
 		{
-			if(bf.getZoneText().length() >= se.getFin())
-			{
-				String val = bf.getZoneText().substring(se.getDebut(), se.getFin()+1);
-				pp.setContenuPP(val);
-				StringBuffer val2 = bf.getZoneText().delete(se.getDebut(), se.getFin());
-				bf.setZoneText(val2);
-				se.setDebut(-1);
-				se.setFin(-1);
-			}
+			Command c = new Coller(this);
+			Memento m = new Memento(c);
+			ca.addMemento(m);
 		}
+		super.Coller();
 	}
-
-	@Override
-	public void selectionner(int debut, int longueur)
-	{
-		if (debut >= 0 && longueur > 0) 
-		{			
-			if (bf.getZoneText().length() - debut >= longueur) //pour ne pas dépasser la chaine séléctionnée
-			{
-				se.setFin(debut + longueur-1);
-			}
-			else 
-			{
-				se.setFin(bf.getZoneText().length()-1 );
-			}
-			se.setDebut(debut);
-			se.setSelected(true);
-		}
-		else 
-		{
-			se.setDebut(debut);
-			se.setFin(debut);
-			se.setSelected(false);
-		}
-	}
-		
-	public void Inserer(String txt)
-	{
-		bf.getZoneText().insert(0, txt);
-		/*if(se.getDebut() >= 0 && se.getFin() >= 0)	
-		{
-			if(se.isSelected())
-			{
-				StringBuffer val = bf.getZoneText().delete(se.getDebut(), se.getFin());
-				bf.setZoneText(val);
-			}
-			bf.getZoneText().insert(se.getDebut(), txt);
-		}*/
-	}
+	
+	
 	
 }
