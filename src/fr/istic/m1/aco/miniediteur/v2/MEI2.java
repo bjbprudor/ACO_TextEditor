@@ -1,5 +1,6 @@
 package fr.istic.m1.aco.miniediteur.v2;
 
+import fr.istic.m1.aco.miniediteur.Configurator;
 import fr.istic.m1.aco.miniediteur.command.*;
 import fr.istic.m1.aco.miniediteur.v1.MEI1;
 
@@ -36,7 +37,7 @@ public class MEI2 extends MEI1
 		for (Memento me : ca.getSavedStates()) 
 		{
 			ori.restoreFromMemento(me);
-			System.out.println("Replay " + me.toString());
+			System.out.println("Replay " + bf.getZoneText().toString());
 		}
 	}
 	

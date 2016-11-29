@@ -57,6 +57,8 @@ public class MiniEditorV2 extends MiniEditorV1
 				Configurator.current = new Replay((MEI2)Configurator.mei);		
 				Configurator.current.Execute();
 				System.out.println("Replay effectué");
+				System.out.println("Buffer : " + Configurator.mei.bf.getZoneText().toString());
+				textArea.setText(Configurator.mei.bf.getZoneText().toString());
 			}
 		});
 		toolBar.add(btnPlay);

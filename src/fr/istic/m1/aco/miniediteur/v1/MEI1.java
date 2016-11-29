@@ -60,24 +60,23 @@ public class MEI1 implements MoteurEdition
 	@Override
 	public void selectionner(int deb, int longe)
 	{
-		int debut = 0, longueur = 0;
-		if (debut >= 0 && longueur > 0) 
+		if (deb >= 0 && longe > 0) 
 		{			
-			if (bf.getZoneText().length() - debut >= longueur) //pour ne pas dépasser la chaine séléctionnée
+			if (bf.getZoneText().length() - deb >= longe) //pour ne pas dépasser la chaine séléctionnée
 			{
-				se.setLongueur(debut + longueur-1);
+				se.setLongueur(deb + longe-1);
 			}
 			else 
 			{
-				se.setLongueur(bf.getZoneText().length()-1 );
+				se.setLongueur(bf.getZoneText().length()-1);
 			}
-			se.setDebut(debut);
+			se.setDebut(deb);
 			se.setSelected(true);
 		}
 		else 
 		{
-			se.setDebut(debut);
-			se.setLongueur(debut);
+			se.setDebut(deb);
+			se.setLongueur(0);
 			se.setSelected(false);
 		}
 	}
@@ -103,9 +102,9 @@ public class MEI1 implements MoteurEdition
 	{
 		if(se.getDebut() >= 0 && se.getLongueur() >= 0 && se.isSelected())
 		{
-			if(bf.getZoneText().length() >= se.getLongueur())
+			if(bf.getZoneText().length() >= se.getLongueur()+1)
 			{
-				StringBuffer val2 = bf.getZoneText().delete(se.getDebut(), se.getLongueur());
+				StringBuffer val2 = bf.getZoneText().delete(se.getDebut(), se.getLongueur()+1);
 				bf.setZoneText(val2);
 				se.setLongueur(0);
 				se.setSelected(false);

@@ -33,11 +33,6 @@ public class MiniEditorV1 extends JFrame
 	protected JToolBar toolBar;
 	protected JTextArea textArea;
 	
-	public void runFrm()
-	{
-		
-	}
-	
 	/**
 	 * Create the frame.
 	 */
@@ -83,6 +78,7 @@ public class MiniEditorV1 extends JFrame
 				System.out.println("Couper executé");
 				System.out.println("presse papier : " + Configurator.mei.pp.getContenuPP());
 				System.out.println("buffer : " + Configurator.mei.pp.getContenuPP());
+				textArea.setText(Configurator.mei.bf.getZoneText().toString());
 			}
 		});
 		toolBar.add(btnCut);
@@ -97,6 +93,7 @@ public class MiniEditorV1 extends JFrame
 				Configurator.current.Execute();
 				System.out.println("Coller executé");
 				System.out.println("buffer : " + Configurator.mei.bf.getZoneText().toString());
+				textArea.setText(Configurator.mei.bf.getZoneText().toString());
 			}
 		});
 		toolBar.add(btnPaste);
@@ -109,7 +106,16 @@ public class MiniEditorV1 extends JFrame
 			public void insertUpdate(DocumentEvent e) 
 			{
 				Configurator.current = new Inserer(Configurator.mei);
-				((Inserer)Configurator.current).setText(e.toString());
+				String txt = "";
+				try
+				{
+					txt = e.getDocument().getText(e.getOffset(), e.getLength());
+				}
+				catch(Exception ex)
+				{
+					
+				}
+				((Inserer)Configurator.current).setText(txt);
 				Configurator.current.Execute();
 				System.out.println("Insertion Executée : " + Configurator.mei.bf.getZoneText().toString());
 			}
@@ -131,7 +137,22 @@ public class MiniEditorV1 extends JFrame
 		textArea.addMouseListener(new MouseListener() {
 			
 			@Override
-			public void mouseReleased(MouseEvent e) { }
+			public void mouseReleased(MouseEvent e) 
+			{ 
+				int i,j;
+				i = textArea.getSelectionStart();
+				try 
+				{
+					j= textArea.getSelectedText().length();
+				}
+				catch (Exception e2) 
+				{
+					j = 0;
+				}
+
+				Configurator.mei.selectionner(i, j);
+				System.out.println("Selection effectuée : deb " + i + "long : " + j );
+			}
 			
 			@Override
 			public void mousePressed(MouseEvent e) { }
@@ -143,14 +164,7 @@ public class MiniEditorV1 extends JFrame
 			public void mouseEntered(MouseEvent e) { }
 			
 			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				int i,j;
-				i = textArea.getSelectionStart();
-				j= textArea.getSelectedText().length();
-				Configurator.mei.selectionner(i, j);
-				System.out.println("Selection effectuée : deb " + i + "long : " + j );
-			}
+			public void mouseClicked(MouseEvent e) { }
 		});
 				
 	}

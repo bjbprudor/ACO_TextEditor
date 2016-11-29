@@ -9,7 +9,7 @@ public interface MoteurEdition
 
 	public Buffer bf = new Buffer(new StringBuffer());
 	public PressePapier pp = new PressePapier("");
-	public Selection se = new Selection(-1, -1);
+	public Selection se = new Selection(0, 0);
 	
 	public void Copier();
 	public void Coller();
