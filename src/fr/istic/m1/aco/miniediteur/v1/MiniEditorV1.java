@@ -1,6 +1,8 @@
 package fr.istic.m1.aco.miniediteur.v1;
 
 import java.awt.BorderLayout;
+import java.awt.RenderingHints.Key;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,6 +20,8 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
@@ -98,39 +102,33 @@ public class MiniEditorV1 extends JFrame
 		});
 		toolBar.add(btnPaste);
 		
-		textArea.getDocument().addDocumentListener(new DocumentListener() 
+		textArea.addKeyListener(new KeyListener() 
 		{
 			
-			@SuppressWarnings("static-access")
 			@Override
-			public void insertUpdate(DocumentEvent e) 
-			{
-				Configurator.current = new Inserer(Configurator.mei);
-				String txt = "";
-				try
-				{
-					txt = e.getDocument().getText(e.getOffset(), e.getLength());
-				}
-				catch(Exception ex)
-				{
-					
-				}
-				((Inserer)Configurator.current).setText(txt);
-				Configurator.current.Execute();
-				System.out.println("Insertion Executée : " + Configurator.mei.bf.getZoneText().toString());
-			}
+			public void keyTyped(KeyEvent e) { }
 			
-			@SuppressWarnings("static-access")
 			@Override
-			public void removeUpdate(DocumentEvent e) 
+			public void keyReleased(KeyEvent e) { }
+			
+			@Override
+			public void keyPressed(KeyEvent e) 
 			{
-				Configurator.current = new Supprimer(Configurator.mei);		
-				Configurator.current.Execute();
-				System.out.println("Suppression Effectué : " + Configurator.mei.bf.getZoneText().toString());
+				if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE | e.getKeyCode() == KeyEvent.VK_DELETE)
+				{
+					Configurator.current = new Supprimer(Configurator.mei);		
+					Configurator.current.Execute();
+					System.out.println("Suppression Effectué : " + Configurator.mei.bf.getZoneText().toString());
+				}
+				else
+				{
+					Configurator.current = new Inserer(Configurator.mei);
+					String txt = String.valueOf(e.getKeyChar());
+					((Inserer)Configurator.current).setText(txt);
+					Configurator.current.Execute();
+					System.out.println("Insertion Executée : " + Configurator.mei.bf.getZoneText().toString());
+				}
 			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) { }
 			
 		});
 		
@@ -149,7 +147,6 @@ public class MiniEditorV1 extends JFrame
 				{
 					j = 0;
 				}
-
 				Configurator.mei.selectionner(i, j);
 				System.out.println("Selection effectuée : deb " + i + "long : " + j );
 			}
