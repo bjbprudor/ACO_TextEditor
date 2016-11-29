@@ -36,8 +36,7 @@ public class MEI1 implements MoteurEdition
 			se.setDebut(se.getDebut()+pp.getContenuPP().length());
 			se.setLongueur(0);
 			se.setSelected(false);
-		}
-		
+		}		
 	}
 
 	@Override

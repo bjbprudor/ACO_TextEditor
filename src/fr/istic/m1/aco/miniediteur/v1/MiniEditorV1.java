@@ -122,11 +122,25 @@ public class MiniEditorV1 extends JFrame
 				}
 				else
 				{
-					Configurator.current = new Inserer(Configurator.mei);
-					String txt = String.valueOf(e.getKeyChar());
-					((Inserer)Configurator.current).setText(txt);
-					Configurator.current.Execute();
-					System.out.println("Insertion Executée : " + Configurator.mei.bf.getZoneText().toString());
+					if(!e.isActionKey())
+					{
+						int[] ignoring = new int[] {KeyEvent.VK_ALT,KeyEvent.VK_CAPS_LOCK,KeyEvent.VK_CONTROL,KeyEvent.VK_SHIFT,KeyEvent.VK_NUM_LOCK,KeyEvent.VK_ESCAPE};
+						boolean ignore = false;
+						int ind = 0;
+						while(ind < ignoring.length & !ignore)
+						{
+							ignore = (ignoring[ind] == e.getKeyCode());
+							ind++;
+						}
+						if(!ignore)
+						{
+							Configurator.current = new Inserer(Configurator.mei);
+							String txt = String.valueOf(e.getKeyChar());
+							((Inserer)Configurator.current).setText(txt);
+							Configurator.current.Execute();
+							System.out.println("Insertion Executée : " + Configurator.mei.bf.getZoneText().toString());
+						}
+					}
 				}
 			}
 			
