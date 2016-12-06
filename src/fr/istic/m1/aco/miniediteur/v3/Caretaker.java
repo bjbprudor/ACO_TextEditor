@@ -8,14 +8,13 @@ public class Caretaker {
 	// Where all mementos are saved
 	
 		ArrayList<MementoConcret> savedmomento = new ArrayList<MementoConcret>();
-        Stack stundo = new Stack();
-        Stack stredo = new Stack();
+      //  Stack stredo = new Stack();
 		// Adds memento to the ArrayList
 		
 		public void addMemento(MementoConcret m) { 
 		//	savedmomento.add(m); 
-			stredo.pop();
-			stundo.push(m);
+		//	stredo.pop();
+		//S	stundo.push(m);
 			
 			}
 	   
