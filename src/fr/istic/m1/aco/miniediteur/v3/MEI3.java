@@ -4,36 +4,42 @@ import fr.istic.m1.aco.miniediteur.v2.MEI2;
 
 public class MEI3 extends MEI2
 {
+	
 	@Override
 	public void Inserer(String txt) 
 	{
-		MementoConcret mc = new MementoConcret(this.bf,this.pp);
+		@SuppressWarnings("unused")
+		MementoConcret mc = new MementoConcret(bf,pp);
 		super.Inserer(txt);
 	}
 	
 	@Override
 	public void Copier() 
 	{
-		MementoConcret mc = new MementoConcret(this.bf,this.pp);
+		@SuppressWarnings("unused")
+		MementoConcret mc = new MementoConcret(bf,pp);
 		super.Copier();
 	}
 	
 	@Override
 	public void Couper() {
 		// TODO Auto-generated method stub
-		MementoConcret mc = new MementoConcret(this.bf,this.pp);
+		@SuppressWarnings("unused")
+		MementoConcret mc = new MementoConcret(bf,pp);
 		super.Couper();
 	}
 	
 	@Override
 	public void Coller() {
-		MementoConcret mc = new MementoConcret(this.bf,this.pp);
+		@SuppressWarnings("unused")
+		MementoConcret mc = new MementoConcret(bf,pp);
 		super.Coller();
 	}
 	
 	@Override
 	public void Supprimer() {
-		MementoConcret mc = new MementoConcret(this.bf,this.pp);
+		@SuppressWarnings("unused")
+		MementoConcret mc = new MementoConcret(bf,pp);
 		super.Supprimer();
 	}
 	

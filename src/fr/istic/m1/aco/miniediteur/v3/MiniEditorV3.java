@@ -5,24 +5,31 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import fr.istic.m1.aco.miniediteur.Configurator;
+import fr.istic.m1.aco.miniediteur.MoteurEdition;
 import fr.istic.m1.aco.miniediteur.v2.MiniEditorV2;
 import javax.swing.JToolBar;
 import java.awt.BorderLayout;
 
-public class MiniEditorV3  extends MiniEditorV2{
+public class MiniEditorV3  extends MiniEditorV2
+{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Override
+	public void SetMEI(MoteurEdition me) 
+	{
+		if(me instanceof MEI3)
+		{
+			super.SetMEI(me);
+		}
+	}
+	
 	public static void main(String[] args) 
 	{	
        new MiniEditorV3();
@@ -34,13 +41,12 @@ public class MiniEditorV3  extends MiniEditorV2{
 	
    int saveFiles = 0, currentText = 0;
    private JToolBar toolBar;
-   private JButton btnNewButton;
-   private JButton btnNewButton_1;
    
    JButton undoBut;
    JButton redoBut;
-	MEI3 me = (MEI3)Configurator.mei;
-   public MiniEditorV3(){
+   
+   public MiniEditorV3()
+   {
 	   
 	   // Set basic information for the panel that will
 	   // hold all the GUI elements
@@ -88,6 +94,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 			
 			
 		}
+		@SuppressWarnings("unused")
 		public void  warn()
 		{
 			String textInTextArea = textArea.getText();
@@ -98,7 +105,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 			    currentText++;
 			
 			
-			MementoConcret mem = new MementoConcret(me.bf,me.pp);
+			MementoConcret mem = new MementoConcret(mei.bf,mei.pp);
 			
 			
 		
@@ -140,7 +147,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 				
 			//	undoBut.setEnabled(true);
 				
-				MementoConcret mem = new MementoConcret(me.bf,me.pp);
+				MementoConcret mem = new MementoConcret(mei.bf,mei.pp);
 				
 				
 				
@@ -225,7 +232,7 @@ public class MiniEditorV3  extends MiniEditorV2{
 	   
 	   
 	   
-	   
+
 	   
 	   
 	   

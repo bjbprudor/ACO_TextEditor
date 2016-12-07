@@ -1,16 +1,13 @@
 package fr.istic.m1.aco.miniediteur.v1;
 
 import java.awt.BorderLayout;
-import java.awt.RenderingHints.Key;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import fr.istic.m1.aco.miniediteur.Configurator;
+import fr.istic.m1.aco.miniediteur.IHM;
+import fr.istic.m1.aco.miniediteur.MoteurEdition;
 import fr.istic.m1.aco.miniediteur.command.Coller;
+import fr.istic.m1.aco.miniediteur.command.Command;
 import fr.istic.m1.aco.miniediteur.command.Copier;
 import fr.istic.m1.aco.miniediteur.command.Couper;
 import fr.istic.m1.aco.miniediteur.command.Inserer;
@@ -26,7 +23,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 
-public class MiniEditorV1 extends JFrame 
+public class MiniEditorV1 extends JFrame implements IHM
 {
 
 	/**
@@ -36,6 +33,9 @@ public class MiniEditorV1 extends JFrame
 	protected JPanel contentPane;
 	protected JToolBar toolBar;
 	protected JTextArea textArea;
+	
+	protected static MoteurEdition mei;
+	protected static Command current;
 	
 	/**
 	 * Create the frame.
@@ -63,10 +63,10 @@ public class MiniEditorV1 extends JFrame
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) 
 			{
-				Configurator.current = new Copier(Configurator.mei);		
-				Configurator.current.Execute();
+				current = new Copier(mei);		
+				current.Execute();
 				System.out.println("Copier executé");
-				System.out.println("presse papier : " + Configurator.mei.pp.getContenuPP());
+				System.out.println("presse papier : " + mei.pp.getContenuPP());
 			}
 		});
 		toolBar.add(btnCopy);
@@ -77,12 +77,12 @@ public class MiniEditorV1 extends JFrame
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) 
 			{
-				Configurator.current = new Couper(Configurator.mei);		
-				Configurator.current.Execute();
+				current = new Couper(mei);		
+				current.Execute();
 				System.out.println("Couper executé");
-				System.out.println("presse papier : " + Configurator.mei.pp.getContenuPP());
-				System.out.println("buffer : " + Configurator.mei.pp.getContenuPP());
-				textArea.setText(Configurator.mei.bf.getZoneText().toString());
+				System.out.println("presse papier : " + mei.pp.getContenuPP());
+				System.out.println("buffer : " + mei.pp.getContenuPP());
+				textArea.setText(mei.bf.getZoneText().toString());
 			}
 		});
 		toolBar.add(btnCut);
@@ -93,11 +93,11 @@ public class MiniEditorV1 extends JFrame
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) 
 			{
-				Configurator.current = new Coller(Configurator.mei);		
-				Configurator.current.Execute();
+				current = new Coller(mei);		
+				current.Execute();
 				System.out.println("Coller executé");
-				System.out.println("buffer : " + Configurator.mei.bf.getZoneText().toString());
-				textArea.setText(Configurator.mei.bf.getZoneText().toString());
+				System.out.println("buffer : " + mei.bf.getZoneText().toString());
+				textArea.setText(mei.bf.getZoneText().toString());
 			}
 		});
 		toolBar.add(btnPaste);
@@ -116,9 +116,9 @@ public class MiniEditorV1 extends JFrame
 			{
 				if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE | e.getKeyCode() == KeyEvent.VK_DELETE)
 				{
-					Configurator.current = new Supprimer(Configurator.mei);		
-					Configurator.current.Execute();
-					System.out.println("Suppression Effectué : " + Configurator.mei.bf.getZoneText().toString());
+					current = new Supprimer(mei);		
+					current.Execute();
+					System.out.println("Suppression Effectué : " + mei.bf.getZoneText().toString());
 				}
 				else
 				{
@@ -134,11 +134,30 @@ public class MiniEditorV1 extends JFrame
 						}
 						if(!ignore)
 						{
-							Configurator.current = new Inserer(Configurator.mei);
+							current = new Inserer(mei);
 							String txt = String.valueOf(e.getKeyChar());
-							((Inserer)Configurator.current).setText(txt);
-							Configurator.current.Execute();
-							System.out.println("Insertion Executée : " + Configurator.mei.bf.getZoneText().toString());
+							((Inserer)current).setText(txt);
+							current.Execute();
+							System.out.println("Insertion Executée : " + mei.bf.getZoneText().toString());
+						}
+					}
+					else
+					{
+						int[] moving = new int[] {KeyEvent.VK_LEFT,KeyEvent.VK_RIGHT,KeyEvent.VK_DOWN,KeyEvent.VK_UP};
+						boolean ignore = true;
+						int ind = 0;
+						while(ind < moving.length & ignore)
+						{
+							ignore = (moving[ind] == e.getKeyCode());
+							ind++;
+						}
+						if(!ignore)
+						{
+							int i,j;
+							i = textArea.getSelectionStart();
+							j = textArea.getSelectionEnd();
+							mei.selectionner(i, j);
+							System.out.println("Deplacement effectué : deb " + mei.se.getDebut() + " fin " + mei.se.getLongueur());
 						}
 					}
 				}
@@ -161,7 +180,7 @@ public class MiniEditorV1 extends JFrame
 				{
 					j = 0;
 				}
-				Configurator.mei.selectionner(i, j);
+				mei.selectionner(i, j);
 				System.out.println("Selection effectuée : deb " + i + "long : " + j );
 			}
 			
@@ -179,5 +198,19 @@ public class MiniEditorV1 extends JFrame
 		});
 				
 	}
+	
+	
+
+	@Override
+	public void SetMEI(MoteurEdition me) { mei = me; }
+
+	@Override
+	public MoteurEdition GetMEI() { return mei; }
+
+	@Override
+	public void SetCommand(Command c) { current = c; }
+
+	@Override
+	public Command GetCommand() { return current; }
 
 }
