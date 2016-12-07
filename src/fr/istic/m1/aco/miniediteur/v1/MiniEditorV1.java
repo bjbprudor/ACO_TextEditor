@@ -23,6 +23,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author Mu-B
+ *
+ */
 public class MiniEditorV1 extends JFrame implements IHM
 {
 

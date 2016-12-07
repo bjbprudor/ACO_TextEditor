@@ -4,6 +4,11 @@ import fr.istic.m1.aco.miniediteur.states.Buffer;
 import fr.istic.m1.aco.miniediteur.states.PressePapier;
 import fr.istic.m1.aco.miniediteur.states.Selection;
 
+/**
+ * 
+ * @author Mu-B
+ *
+ */
 public interface MoteurEdition 
 {
 

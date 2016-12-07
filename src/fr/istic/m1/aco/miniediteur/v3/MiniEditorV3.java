@@ -13,6 +13,11 @@ import fr.istic.m1.aco.miniediteur.v2.MiniEditorV2;
 import javax.swing.JToolBar;
 import java.awt.BorderLayout;
 
+/**
+ * 
+ * @author 
+ *
+ */
 public class MiniEditorV3  extends MiniEditorV2
 {
 	

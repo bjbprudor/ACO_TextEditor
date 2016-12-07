@@ -9,6 +9,11 @@ import fr.istic.m1.aco.miniediteur.v2.MiniEditorV2;
 import fr.istic.m1.aco.miniediteur.v3.MEI3;
 import fr.istic.m1.aco.miniediteur.v3.MiniEditorV3;
 
+/**
+ * 
+ * @author Mu-B
+ *
+ */
 public class Configurator 
 {
 	

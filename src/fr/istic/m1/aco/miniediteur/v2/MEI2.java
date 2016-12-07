@@ -4,7 +4,7 @@ import fr.istic.m1.aco.miniediteur.command.*;
 import fr.istic.m1.aco.miniediteur.v1.MEI1;
 
 /**
- * @author 16013094
+ * @author 16013094 
  *
  */
 public class MEI2 extends MEI1

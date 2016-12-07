@@ -3,7 +3,7 @@ package fr.istic.m1.aco.miniediteur.v1;
 import fr.istic.m1.aco.miniediteur.MoteurEdition;
 
 /**
- * @author 16013094
+ * @author 16013094 
  *
  */
 public class MEI1 implements MoteurEdition

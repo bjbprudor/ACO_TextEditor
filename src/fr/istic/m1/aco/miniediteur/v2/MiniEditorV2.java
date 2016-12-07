@@ -10,6 +10,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author Mu-B
+ *
+ */
 public class MiniEditorV2 extends MiniEditorV1
 {
 	

@@ -18,6 +18,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author Mu-B
+ *
+ */
 public class TELauncher extends JFrame {
 
 	/**
